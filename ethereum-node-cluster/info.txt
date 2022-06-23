@@ -1,0 +1,11 @@
+node 1 public address: 0x3Fd886CA29F2826AaA477D31D21Ec0c0150Bc6E4
+node 1 passcode      : <.password.env>
+
+
+node 2 public address: 0xF63DD7Bfc11Cc4084D6a7663e59888570C56EbCA
+node 2 passcode      : <.password.env>
+
+bootnode enode: enode://f7f6d644da892f3d5e56f784eefa84b0317a4e9d5012b4e201157388196e837cc94c623200bae5c77d15bd0652ad264401862dcbc1af412a3866ec64e01a4e64@127.0.0.1:0?discport=30301
+
+updated
+enode://371694e99853c70a5a08e0a2765988ed6ac7d472e5c8a1982d6188edcc6656a1bbc3c0491b9258ab7d2400290c3231530db58810abc527b108a140e935d5cbd3@127.0.0.1:30303

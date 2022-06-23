@@ -1,0 +1,118 @@
+version: '3.7'
+services:
+  
+  netstats:
+    hostname: netstats
+    logging:
+      driver: none
+    ports:
+      - 3000:3000
+    build:
+      context: eth-netstats-build
+    container_name: eth-netstats
+    environment:
+      WS_SECRET: ${NETSTATS_SECRET}
+    networks:
+      - competency_passbook
+
+  bootnode:
+    container_name: eth-bootnode
+    build:
+      context: eth-bootnode
+    ports:
+      - 30301:30301/udp
+    command: bootnode --nodekeyhex ${BOOTNODE_KEY}
+    networks:
+      competency_passbook:
+        ipv4_address: 172.3.0.111
+
+  node-non-miner:
+    depends_on:
+      - bootnode
+    build:
+      context: eth-node-1
+    container_name: node-non-miner
+    ports:
+      - 8545:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db,personal"
+      --ethstats node:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - competency_passbook
+
+  node-miner-1:
+    depends_on:
+      - bootnode
+      - netstats
+    build:
+      context: eth-node-1
+    container_name: node-miner-1
+    ports:
+      - 8546:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "clique,eth,web3,net,admin,db,miner,personal"
+      --mine --miner.etherbase ${ACCOUNT_1}
+      --unlock ${ACCOUNT_1} --password .password.env
+      --ethstats node-miner-1:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - competency_passbook
+
+  node-miner-2:
+    depends_on:
+      - bootnode
+      - netstats
+    build:
+      context: eth-node-2
+    container_name: node-miner-2
+    ports:
+      - 8547:8545
+    command: geth
+      --syncmode full
+      --bootnodes enode://${BOOTNODE_ID}@172.3.0.111:30301
+      --networkid ${NETWORK_ID}
+      --rpc --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,web3,net,admin,db,miner,personal"
+      --mine --miner.etherbase ${ACCOUNT_2}
+      --unlock ${ACCOUNT_2} --password .password.env
+      --ethstats node-miner-2:${NETSTATS_SECRET}@netstats:3000
+    networks:
+      - competency_passbook
+  
+  netdata:
+    image: netdata/netdata
+    logging:
+      driver: none
+    container_name: netdata
+    hostname: netdata-monitoring
+    ports:
+      - 19999:19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - netdataconfig:/etc/netdata
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+volumes:
+  netdataconfig:
+  netdatalib:
+  netdatacache:
+
+networks:
+  competency_passbook:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.3.0.0/24
