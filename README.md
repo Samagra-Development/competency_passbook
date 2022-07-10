@@ -5,4 +5,4 @@ A distributed competency tracking LMS based on Digital Signatures for issuing/di
 | Topic        | Resource                                       |
 | -----------: | :--------------------------------------------- |
 | VPs and VCs  | [W3 Spec](https://www.w3.org/TR/vc-data-model) |
-| Action Flows | [Action Flows](https://github.com/samagra-development/competency_passbook/blob/documentation/dev-docs/Action%20Flows.md)        |
+| Action Flows | [Action Flows](https://github.com/Samagra-Development/competency_passbook/blob/main/dev-docs/Action%20Flows.md)        |
