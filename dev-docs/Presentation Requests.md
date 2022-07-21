@@ -113,3 +113,8 @@ flowchart LR;
   fieldn --> vpcreation
   vpcreation --> centralregistry(Put VP against requesters DID in central registry)
 ```
+Upon receiving a request, the wallet automatically takes a look at all the VCs which it contains and selects the required fields from a single or multiple VCs. It then combines and places the values from all these fields and signs them into a Verifiable Presentation (VP). This VP is then sent to the requester either by uploading it (after encryption using the requester's public key) to the central registry or via any other service available.
+
+The VP structure / format can be seen [here](https://github.com/Samagra-Development/competency_passbook/blob/main/dev-docs/Action%20Flows.md)
+
+In case all the fields requested are not found in the holder's wallet, a partial VP is returned with the values which were available. 
