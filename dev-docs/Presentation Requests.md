@@ -88,3 +88,28 @@ Each such field object is stored as a JSON file under the ```AttributeDir``` dir
 In order to register a new field, kindly feel free to fork the given spec repository, add the proposed fields to be added and open a PR. Before doing so however, kindly do check existing fields which might serve the same purpose.
 
 ## Presentation Requests
+
+Verifiable Credentials (VCs) once issued need to presented to other 3rd parties (verifiers and requesters) in a format which does not hinder the privacy and security of the VC. Whenever a requester would like to request for a Verifiable Presentation (VP) containing a particular set of attributes, a request first needs to be sent to the central registry where it is then periodically fetched and updated by the holder's mobile app.
+
+A request needs to adhere to the following JSON format
+
+```json
+{
+	"metaData" : { /* ... metaData such as request description, timestamp, etc */ },
+	"fields"   : ['field 1', 'field 2', . . . , 'field n'],
+	"proof"    : { /* ... cryptographic proof to verify the identity of the requester */ }
+}
+```
+
+```mermaid
+flowchart LR;
+  Registry-- Regularly fetch Requests -->wallet(Holder Wallet)
+  wallet-- Resolves Reuests and verifies fields --> resolver(...)
+  resolver --> field1
+  resolver --> field2
+  resolver --> fieldn
+  field1 --> vpcreation(Finds required fields in underlying VCs and signs VP. Asks for user authorization before doing so)
+  field2 --> vpcreation
+  fieldn --> vpcreation
+  vpcreation --> centralregistry(Put VP against requesters DID in central registry)
+```
