@@ -1,0 +1,12 @@
+{
+    "fieldInternalName": "date",
+    "fieldExternalName": [
+        "Birth Date",
+        "Expiry Date",
+        "Issuing Date"
+    ],
+    "fieldDescription": "Expects a date type input. Eg: dd.mm.yyyy or any other valid format",
+    "fieldDataType": "date",
+    "fieldConstraints": [],
+    "fieldPreProcessors": []
+}

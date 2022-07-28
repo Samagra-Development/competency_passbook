@@ -1,0 +1,11 @@
+{
+    "fieldInternalName": "email",
+    "fieldExternalName": [
+        "Email",
+        "Email ID"
+    ],
+    "fieldDescription": "Expects a person's email address. Eg: johndoe@xyz.com",
+    "fieldDataType": "string:email",
+    "fieldConstraints": [],
+    "fieldPreProcessors": []
+}

@@ -1,0 +1,11 @@
+{
+    "fieldInternalName": "last_name",
+    "fieldExternalName": [
+        "Last Name",
+        "Surname"
+    ],
+    "fieldDescription": "Expects a persons last name. Eg: If a person's name is John Henry K. Doe, then the last name is - Doe",
+    "fieldDataType": "string",
+    "fieldConstraints": [],
+    "fieldPreProcessors": []
+}
