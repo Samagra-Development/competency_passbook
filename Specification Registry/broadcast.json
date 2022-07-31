@@ -18,5 +18,10 @@
         "attributes" : ["last_name", "middle_name"],
         "constraints" : [],
         "preprocessors" : []
+    },
+    "5" : {
+        "attributes" : ["address", "city", "last_name", "middle_name"],
+        "constraints" : [],
+        "preprocessors" : []
     }
 }
