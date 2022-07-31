@@ -1,0 +1,27 @@
+{
+    "1" : {
+        "attributes" : ["email", "name"],
+        "constraints" : [],
+        "preprocessors" : []
+    },
+    "2" : {
+        "attributes" : ["first_name", "age"],
+        "constraints" : [],
+        "preprocessors" : []
+    },
+    "3" : {
+        "attributes" : ["date", "amount"],
+        "constraints" : [],
+        "preprocessors" : []
+    },
+    "4" : {
+        "attributes" : ["last_name", "middle_name"],
+        "constraints" : [],
+        "preprocessors" : []
+    },
+    "5" : {
+        "attributes" : ["amount", "date", "last_name", "middle_name"],
+        "constraints" : [],
+        "preprocessors" : []
+    }
+}

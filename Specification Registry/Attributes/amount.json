@@ -1,0 +1,13 @@
+{
+    "fieldInternalName": "amount",
+    "fieldExternalName": [
+        "Amount Payable",
+        "Net Payable",
+        "Pay",
+        "Amount"
+    ],
+    "fieldDescription": "Expects the amount to be payed in INR. Eg: Rs. 100.00",
+    "fieldDataType": "unsignedFloat",
+    "fieldConstraints": [],
+    "fieldPreProcessors": []
+}

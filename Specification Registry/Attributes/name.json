@@ -1,0 +1,11 @@
+{
+    "fieldInternalName": "name",
+    "fieldExternalName": [
+        "Name",
+        "Full Name"
+    ],
+    "fieldDescription": "Expects a persons full name, i.e. First Name + Middle Name + Last Name. Eg: John Doe",
+    "fieldDataType": "string",
+    "fieldConstraints": [],
+    "fieldPreProcessors": []
+}
