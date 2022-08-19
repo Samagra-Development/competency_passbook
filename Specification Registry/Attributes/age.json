@@ -1,0 +1,10 @@
+{
+    "fieldInternalName": "age",
+    "fieldExternalName": [
+        "Age"
+    ],
+    "fieldDescription": "Expects a person's age in years. Eg: 18 yrs",
+    "fieldDataType": "unsignedInteger",
+    "fieldConstraints": [],
+    "fieldPreProcessors": []
+}
